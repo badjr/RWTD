@@ -36,7 +36,6 @@ public class TaxSalesSearchResultsURLParser {
 //                str = in.readLine().toString();
                 searchResultsURLSource += str + "\r\n";
 //                System.out.println(str);
-                // str is one line of text; readLine() strips the newline character(s)
             }
             in.close();
         }
