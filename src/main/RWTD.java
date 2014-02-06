@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package samplegit;
+package main;
 
 /**
  *
  * @author Brett
  */
-public class SampleGit {
+public class RWTD {
 
     /**
      * @param args the command line arguments
