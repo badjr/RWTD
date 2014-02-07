@@ -18,7 +18,6 @@ public class RWTD {
         TaxSalesSearchResultsURLParser searchResultParser = new TaxSalesSearchResultsURLParser();
         searchResultParser.grabSearchResultsURLs();
         //My comment
-        //Brett's comment
         
     }
 }
