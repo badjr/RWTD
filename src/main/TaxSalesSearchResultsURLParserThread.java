@@ -190,7 +190,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
 
         try (FileWriter fw = new FileWriter("govTaxSaleAdsPage" + myID + ".csv")) {
             fw.write(csvString);
-            System.out.println("govTaxSaleAdsPage" + myID + ".csv created.");
+            System.out.println("govTaxSaleAdsPage" + myID + ".csv created. " + numAdsParsed + " ads stored.");
         }
         catch (IOException ex) {
             Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
