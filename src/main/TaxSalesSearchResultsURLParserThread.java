@@ -178,7 +178,8 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
     }
 
     public void writeToFile() {
-        //TODO: Decide on the file name to write to, and if we keep multiple files if file already exists.
+        //TODO: Decide on the file name to write to, and if we keep multiple
+        //files if file already exists.
         fileName = "govTaxSaleAds.csv";
         File f = null;
 
