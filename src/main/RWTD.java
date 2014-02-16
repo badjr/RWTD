@@ -4,6 +4,9 @@
  */
 package main;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  *
  * @author Brett
@@ -23,11 +26,24 @@ public class RWTD {
 //        System.out.println("Total execution time: " + (endTime - startTime) );
 //        
 //        startTime = System.currentTimeMillis();
-        TaxSalesSearchResultsURLParserThread[] searchResultParser2 = new TaxSalesSearchResultsURLParserThread[100];
+        
+        TaxSalesSearchResultsURLParserThread[] searchResultParser2 = new TaxSalesSearchResultsURLParserThread[10];
         for (int i = 0; i < 10; i++) {
             searchResultParser2[i] = new TaxSalesSearchResultsURLParserThread(i+1);
             searchResultParser2[i].start();
         }
+        
+        for (TaxSalesSearchResultsURLParserThread thread : searchResultParser2) {
+            //This causes threads to execute in order by ID.
+            thread.join();
+            thread.writeToFile();
+        }
+        
+//        ExecutorService executor = Executors.newFixedThreadPool(10);
+//        for (int i = 0; i < 10; i++) {
+//            executor.submit(new TaxSalesSearchResultsURLParserThread(i+1));
+//        }
+//        executor.shutdown();
         
 //        for (int i = 0; i < 9; i++) {
 //            searchResultParser2[i].join();
@@ -36,8 +52,6 @@ public class RWTD {
 //        endTime = System.currentTimeMillis();
 //        
 //        System.out.println("Total execution time: " + (endTime - startTime) );
-        
-        //My comment
         
     }
 }

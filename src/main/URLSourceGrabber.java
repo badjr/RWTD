@@ -23,15 +23,15 @@ public class URLSourceGrabber {
 
     public String getSourceFromURL(String urlString) {
         String sourceFromURL = "";
-        URL url;
-        String str;
+        
         try {
 //            searchResultsURL = new URL("http://georgiapublicnotice.com/pages/results_content?category=gpn20&phrase_match=&min_date=&max_date=&page_label=home&widget=search_content&string=search_category_gpn20+search_county_cobb&county=Cobb+County");
-            url = new URL(urlString);
+            URL url = new URL(urlString);
 
             // Read all the text returned by the server
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
+            
+            String str;
             while ((str = in.readLine()) != null) {
 //                str = in.readLine().toString();
                 sourceFromURL += str + System.lineSeparator();
