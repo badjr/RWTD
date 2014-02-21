@@ -23,8 +23,8 @@ import java.util.logging.Logger;
  * Threaded version. Runs faster than the sequential version.
  */
 //public class TaxSalesSearchResultsURLParserThread implements Runnable {
-//Write all source URLs to a file
-//Write ads to a file
+//TODO: Write all source URLs to files
+//TODO: Write ads to files
 public class TaxSalesSearchResultsURLParserThread extends Thread {
 
     private int myID; //Corresponds to the search results page a thread will process.
