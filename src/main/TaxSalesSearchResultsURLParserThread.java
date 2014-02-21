@@ -23,6 +23,8 @@ import java.util.logging.Logger;
  * Threaded version. Runs faster than the sequential version.
  */
 //public class TaxSalesSearchResultsURLParserThread implements Runnable {
+//Write all source URLs to a file
+//Write ads to a file
 public class TaxSalesSearchResultsURLParserThread extends Thread {
 
     private int myID; //Corresponds to the search results page a thread will process.
@@ -37,7 +39,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
 
     public void grabSearchResultsURLs() {
         String str;
-
+        
         String searchResultsURLSource = ""; //This string stores the source of the search results page.
 
         String countyToSearch = "fulton"; //Maybe later we can have the user set this
@@ -77,7 +79,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         // /view/full_story/24406702/article-M-9036-NOTICE-OF-FORECLOSURE-OF-RIGHT-TO-REDEEM--REF--O-C-G-A-?
         Scanner urlSourceScanner = new Scanner(searchResultsURLSource);
         int numURLs = 0;
-
+        
         while (urlSourceScanner.hasNextLine()) {
             String line = urlSourceScanner.nextLine();
             if (line.contains("story_item_full_story_link")) { //If the line contains "story_item_full_story_link"
