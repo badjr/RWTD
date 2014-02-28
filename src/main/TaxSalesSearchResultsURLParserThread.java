@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -30,25 +31,30 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
     private int myID; //Corresponds to the search results page a thread will process.
     private String[] storyURLsArray; //This array holds the story URLs found on the search results page.
     private String csvString = "";
-    private static String fileName; //File name of .csv to write to. Static so each thread will write to the same file.
+//    private static String fileName; //File name of .csv to write to. Static so each thread will write to the same file.
     private int numAdsParsed = 0;
+    private int searchResultsAdsPerPage;
+    private String countyToSearch;
 
-    public TaxSalesSearchResultsURLParserThread(int myID) {
+    public TaxSalesSearchResultsURLParserThread(int myID, int searhResultsAdsPerPage, String countyToSearch) {
         this.myID = myID;
+        this.searchResultsAdsPerPage = searhResultsAdsPerPage;
+        this.countyToSearch = countyToSearch;
     }
 
     public void grabSearchResultsURLs() {
         String str;
-        
+
         String searchResultsURLSource = ""; //This string stores the source of the search results page.
 
-        String countyToSearch = "fulton"; //Maybe later we can have the user set this
-        storyURLsArray = new String[50]; //50 stories per page
+//        countyToSearch = "fulton"; //Maybe later we can have the user set this
+        storyURLsArray = new String[searchResultsAdsPerPage]; //50 stories max per page, it appears.
 
         try {
             //This is the URL of the search results page when selecting the category and the county and pressing search.
             URL searchResultsURL = new URL("http://georgiapublicnotice.com/pages/"
-                    + "results_content/push?per_page=50&x_page=" + myID
+                    + "results_content/push?per_page=" + searchResultsAdsPerPage
+                    + "&x_page=" + myID
                     + "&rel=next&class=&search_content[category]=gpn20"
                     + "&search_content[phrase_match]="
                     + "&search_content[min_date]="
@@ -79,7 +85,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         // /view/full_story/24406702/article-M-9036-NOTICE-OF-FORECLOSURE-OF-RIGHT-TO-REDEEM--REF--O-C-G-A-?
         Scanner urlSourceScanner = new Scanner(searchResultsURLSource);
         int numURLs = 0;
-        
+
         while (urlSourceScanner.hasNextLine()) {
             String line = urlSourceScanner.nextLine();
             if (line.contains("story_item_full_story_link")) { //If the line contains "story_item_full_story_link"
@@ -128,6 +134,10 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         for (int i = 0; i < storyURLsArray.length; i++) {
             String URLSource = urlSourceGrabber.getSourceFromURL("http://georgiapublicnotice.com/" + storyURLsArray[i]);
 
+            //When we get the URL source of the stories from the search results
+            //page, we call this method to write them to their separate files.
+            writeStoryURLSourceToFile(URLSource, i);
+
             try { //Get only government tax sheriff sale ads.
 
                 //The string that will store the current ad.
@@ -171,6 +181,8 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
                 //ad and we do nothing.
             }
 
+            //Write the URL Source to file
+
         }
 
 //        System.out.println("----------------------");
@@ -179,50 +191,159 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
 
     }
 
-    public void writeToFile() {
+    /*
+     * This method writes the actual story URLs to separate .txt files for
+     * investigating parsing errors or discrepancies. 
+     * @param URLSource The string holding the URL source of a story
+     * @param i The index in the array storing the story URLs. Corresponds to
+     * the result number on a page.
+     */
+    private void writeStoryURLSourceToFile(String URLSource, int i) {
+        //FIXME: This method is potentially slow.
+        //Build times:
+        //6 min 20 sec
+        //54 sec
+        //13 minutes 34 seconds
+        //3 minutes 6 seconds
+        //28 minutes 12 seconds
+        
+        //DateTime object from joda-time library.
+        //We'll use this to get the month, day of month, and year to use in
+        //the directory we will write.
+        DateTime dt = new DateTime();
+        
+        try {
+            File f = new File("AdsTaxSaleGA" + "\\AdsTaxSaleSourceGA\\"
+                    + countyToSearch + "GA"
+                    + "\\" + dt.getMonthOfYear() + "-" + dt.getDayOfMonth()
+                    + "-" + (dt.getYear() % 100)
+                    + "\\pg" + myID + "result" + i + ".txt");
+            
+            //Make the directory if it doesn't exist yet.
+            f.mkdirs();
+            
+            //If the file already exists, delete then recreate a blank file.
+            if (f.exists()) {
+                f.delete();
+                try {
+                    f.createNewFile();
+                }
+                catch (IOException ex) {
+                    Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            //Write the URL source to the file.
+            FileWriter fw = new FileWriter(f);
+            fw.write(URLSource);
+            fw.close(); //Close the FileWriter.
+        }
+        catch (IOException ex) {
+            Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*
+     * This method writes all story URLs from the search results page to a .txt
+     * file.
+     */
+    public void writeStoryURLsToFile() {
+        String fileName = "URLsAdsTaxSale" + countyToSearch + ".txt";
+        String path = "AdsTaxSaleGA\\URLsAdsTaxSaleGA\\";
+        File f = new File(path + fileName);
+        
+        if (myID == 1) { //Use only thread 1 for checking if the file exists.
+            if (f.exists()) { //Delete and create a new blank file if it existed.
+                f.delete();
+                try {
+                    f.createNewFile();
+                }
+                catch (IOException ex) {
+                    Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        //Writing the story URLs from storyURLsArray to file.
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(path + fileName, true);
+            for (int i = 0; i < storyURLsArray.length; i++) {
+                fw.write("http://georgiapublicnotice.com/pages" + storyURLsArray[i] + System.lineSeparator());
+            }
+        }
+        catch (IOException ex) {
+            Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            try {
+                fw.close();
+            }
+            catch (IOException ex) {
+                Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    public void writeTaxSaleAdsToFile() {
         //TODO: Decide on the file name to write to, and if we keep multiple
         //files if file already exists.
-        fileName = "govTaxSaleAds.csv";
-        File f = null;
+
+        DateTime dt = new DateTime(); //For putting the month, year, and date in file name.
+        String fileName = "AdsTaxSaleGA\\AdsTaxSaleGA"
+                + "\\AdsTaxSaleGA"
+                + "\\" + countyToSearch + "GA"
+                + "\\govTaxSaleAds" 
+                + dt.getMonthOfYear() + "-" + dt.getDayOfMonth()
+                + "-" + (dt.getYear() % 100) + ".csv";
+        
+        File f;
 
         if (myID == 1) { //Use thread 1 to create the file.
             f = new File(fileName);
+            
+            //If the file exists already, delete it and create a new blank file.
+            if (f.exists()) {
+                f.delete();
+                try {
+                    f.createNewFile();
+                }
+                catch (IOException ex) {
+                    Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
-            //If the file already exists, append number to the end in increasing
-            //fashion.
-//            for (int i = 2; f.exists() && !f.isDirectory(); i++) {
-//                fileName = "govTaxSaleAds" + i + ".csv";
-//                f = new File(fileName);
-//            }
         }
 
         try (FileWriter fw = new FileWriter(fileName, true)) {
-            synchronized (this) {
-                if (myID == 1) {
-                    //Writing the field names on the first row of the .csv
-                    //Use only thread with ID 1 so every thread doesn't write
-                    //this row.
-                    String fields = "SHERIFF SALE #,"
-                            + "TAX PARCEL ID, "
-                            + "CURRENT RECORD HOLDER,"
-                            + "DEFENDANT IN FIFA,"
-                            + "TAX TRANSFEREE,"
-                            + "AMOUNT DUE,"
-                            + "TAX YEARS DUE,"
-                            + "DEED BOOK,"
-                            + "LEGAL DESCRIPTION"
-                            + System.lineSeparator();
-                    fw.write(fields);
-                }
+//            synchronized (this) {
+            if (myID == 1) {
+                //Writing the field names on the first row of the .csv
+                //Use only thread with ID 1 so every thread doesn't write
+                //this row.
+                String fields = "SHERIFF SALE #,"
+                        + "TAX PARCEL ID, "
+                        + "CURRENT RECORD HOLDER,"
+                        + "DEFENDANT IN FIFA,"
+                        + "TAX TRANSFEREE,"
+                        + "AMOUNT DUE,"
+                        + "TAX YEARS DUE,"
+                        + "DEED BOOK,"
+                        + "LEGAL DESCRIPTION"
+                        + System.lineSeparator();
+                fw.write(fields);
+            }
 
-                System.out.println("myID = " + myID + ". Writing " + numAdsParsed + " ads to " + fileName);
-                fw.write(csvString);
+            System.out.println("myID = " + myID + ". Writing " + numAdsParsed + " ads to " + fileName);
+            fw.write(csvString);
 
 //                System.out.println("govTaxSaleAdsPage.csv created. " + numAdsParsed + " ads stored.");
-            }
+//            }
 //            System.out.println("govTaxSaleAdsPage" + myID + ".csv created. " + numAdsParsed + " ads stored.");
         }
         catch (IOException ex) {
+            //TODO: Pause if don't have permission to write to file.
             Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
