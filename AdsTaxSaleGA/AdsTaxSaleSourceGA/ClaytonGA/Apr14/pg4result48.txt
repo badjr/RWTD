@@ -1,0 +1,343 @@
+<html>
+<head><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<meta name="verify-v1" content="cOD8ebfkil4qHKVynBHa9MfkEIw2BnpWZUczCmtVsNU=" >
+ <title>Georgia Press Association Public Notice Website - NOTICE OF FORECLOSURE OF RIGHT TO REDEEM  REF  O C G A </title> 
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <meta property="og:title" content="NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A. - NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A. Section 48-4-5 et seq.; 48-4-45 &amp; 48-4-46] TO: RAFAEL PUENTE BANK OF AMERICA NATIONAL ASSOCIATION OCCUPANT OF 8143 HUNTINGTON DRIVE A..."/>
+ <meta property="og:type" content="article"/>
+   <meta property="og:image" content="http://georgiapublicnotice.com/images/article.jpg"/>
+
+  <meta name="keywords" content="Adoptions, Alcoholic, Beverage, Annual, Reports, Condemnations, Construction/Service, Bids, Corporations, and, Business, Organizations, Debtors, and, Creditors, Divorces, Election, Notices, Family, Children, Youth, Foreclosures, Forfeiture/Seizure, Local, Governmen" /> 
+     <meta name="description" content="NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A. - NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A. Section 48-4-5 et seq.; 48-4-45 &amp; 48-4-46] TO: RAFAEL PUENTE BANK OF AMERICA NATIONAL ASSOCIATION OCCUPANT OF 8143 HUNTINGTON DRIVE A..."> 
+<link id="default_facebook_image" rel="image_src" href="/images/article.jpg" />
+
+
+<meta name="robots" content="noarchive">
+<link href="http://assets.radiatemedia.com/templates/publication_professional/stylesheets/global-cssball.css" media="all" rel="stylesheet" type="text/css" />            <link href="http://assets.radiatemedia.com/sites/301/stylesheets/georgiapublicnotice.com.css" media="all" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/javascripts/jsball.js"></script>
+
+
+<!--@ @content :label => javascript_and_css, :naked => true, :bare => true@ @-->
+
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><script type="text/javascript" charset="utf-8" src="http://analytics.radiatemedia.com/javascripts/analytics.js?v=3"></script><script type="text/javascript">moment.lang('en'); window.radiateMedia.updateDates(true);</script></head>
+
+<body>
+
+<div id="pt1_page">
+	<center>
+	<div id="pt1_branding"> </div>
+	<div id="pt1_search_bar_container">
+		<div id="pt1_search_bar">
+			<div id="pt1_search_controls">
+				<div id="pt1_search_bar_ajax_container"> <div id="content_container" align="left">	<div>
+	<div id="pt1_search_element_select" style="display: visible;">
+        Search our statewide database of public notices 
+<!-----------------
+	<select id="pt1_search_dropdown" onChange="toggleSearch(this.value)">
+		<option value="content">public notices</option>
+		
+	</select>
+--------------------->
+</div>
+<div id="pt1_search_element_bar">
+	<div id="pt1_search_content" style="display: visible;">
+		<div id="search_content_container" align="left"><form accept-charset="UTF-8" action="/pages/results_content/search_content" id="search_content_form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="EXyfixYbVKTvs8UTnlehrVeNNzGkO1AFUEADYgJ+Nz4=" /></div>
+<input class="searchBarStringField" id="string" name="string" size="30" type="text" />
+<script type="text/javascript">
+  var query_string = window.location.search;
+  var matchingParameter = query_string.match(/\Wstring\W*=[^&]*/);
+  if (matchingParameter) {
+    var pair = matchingParameter[0].split(/=/);
+    var value = pair[pair.length - 1];
+    jQuery("input[name=string]").val(value);
+  }
+</script>
+	<input name="commit" type="submit" value="search" />
+</form></div>
+	</div>
+</div>
+
+</div>
+</div> </div>
+			</div>
+			<div id="pt1_login_controls">
+				<div id="user_menu_container" align="left"><div class="userMenu">
+  <ul id="user_menu_login_list">
+    	<li id="sign_in"><a href="/pages/login/?">sign in</a></li>
+
+  </ul>
+</div></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="pt1_vertical_menu_container">
+		<div id="content_container" align="left">	<div>
+	<div id="pt1_menu_content" class="pt1_menu">
+	<div class="pt1_menu_group">
+		<div class="pt1_heading"><a href="/"><font color="#FEFEFE">home</font></a></div>
+		<div class="pt1_item_group">
+			<div class="pt1_item"><a href="/pages/what_is_public_notice">What is Public Notice?</a></div>
+			<div class="pt1_item"><a href="/pages/public_notice_news">Public Notice News</a></div>
+			<div class="pt1_item"><a href="http://www.publicnoticeads.com" TARGET="_blank">Across America</a></div>
+			<div class="pt1_item"><a href="/pages/my_content">Subscribe</a></div>
+			<p />
+			<div class="pt1_item"><a href="/pages/legal_organs">Georgia Legal Organs</a></div>
+			<div class="pt1_item"><a href="/pages/about_us">About Us</a></div>
+			<div class="pt1_item"><a href="/pages/business_directory_contact/search_results/add_tag?tag=gpa_member">Contact Us</a></div>
+			<div class="pt1_item"><a style="font-weight: bold;" href="mailto:publicnotice@gapress.org">For technical support please contact publicnotice@<br />gapress.org</a></div>
+			<p />
+			<p />
+<br>
+			<div class="pt1_item"><a href="/pages/member_import?widget_action=confirm_package&widget=purchase_package&package_id=4390&open=&">Legal Organs Sign In (publishers only)</a></div>
+
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
+	</div>
+
+	<div id="pt1_vertical_content_container">
+		  <script>
+/*
+
+highlight v3
+
+Highlights arbitrary terms.
+
+<http://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-jquery-plugin.html>
+
+MIT license.
+
+Johann Burkard
+<http://johannburkard.de>
+<mailto:jb@eaio.com>
+
+*/
+
+jQuery.fn.highlight = function(pat) {
+ function innerHighlight(node, pat) {
+  var skip = 0;
+  if (node.nodeType == 3) {
+   var pos = node.data.toUpperCase().indexOf(pat);
+   if (pos >= 0) {
+    var spannode = document.createElement('span');
+    spannode.className = 'highlight';
+    var middlebit = node.splitText(pos);
+    var endbit = middlebit.splitText(pat.length);
+    var middleclone = middlebit.cloneNode(true);
+    spannode.appendChild(middleclone);
+    middlebit.parentNode.replaceChild(spannode, middlebit);
+    skip = 1;
+   }
+  }
+  else if (node.nodeType == 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
+   for (var i = 0; i < node.childNodes.length; ++i) {
+    i += innerHighlight(node.childNodes[i], pat);
+   }
+  }
+  return skip;
+ }
+ return this.each(function() {
+  innerHighlight(this, pat.toUpperCase());
+ });
+};
+
+jQuery.fn.removeHighlight = function() {
+ return this.find("span.highlight").each(function() {
+  this.parentNode.firstChild.nodeName;
+  with (this.parentNode) {
+   replaceChild(this.firstChild, this);
+   normalize();
+  }
+ }).end();
+};
+
+</script>
+
+<script type="text/javascript">
+		$j(document).ready(function(){
+			var match = window.location.toString().match(/phrase_match=[^&]*/)[0].split("=")[1]
+			if (match.length > 0){
+				$j(".full_story").highlight("");
+
+			}
+		});
+</script>
+<div id="pt1_full_story">
+	<div id="pt1_main_column">
+		<div id="push_container" align="left">  <div style="" class="full_story">
+    <div class="even">
+        <div class="" style=""><!-- public notice -->
+
+
+    <div>News Daily</div>
+
+    <div>Clayton County</div>
+
+    <br>
+
+	<div class="story_item">
+		<div class="story_item_headline">NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A.,</div>
+		<div class="story_item_info">
+      <div class="signature_line"><span title="2013-09-13T08:18:39-05:00" class="story_item_date updated" format="">Sep 13, 2013</span>&nbsp;|&nbsp;39&nbsp;views&nbsp;|&nbsp;<a href="mailto:?subject=friend%20recommendation%20from%20Georgia%20Press%20Association%20Public%20Notice%20Website&amp;body=A%20friend%20recommended%20the%20article%20%22NOTICE%20OF%20FORECLOSURE%20OF%20RIGHT%20TO%20REDEEM%20%5BREF.%20O.C.G.A.%2C%22%20for%20you.%20%20Read%20it%20at%20http%3A%2F%2Fgeorgiapublicnotice.com%2Fbookmark%2F23601598%2Fpublic-notice-NOTICE-OF-FORECLOSURE-OF-RIGHT-TO-REDEEM--REF--O-C-G-A-." id="8a85b338aa4af1aa"><span style="position: relative;"><img alt="email to a friend" class="dont_touch_me" src="http://assets.radiatemedia.com/images/email-this.gif" title="email to a friend" /></span></a>&nbsp;|&nbsp;<span><a href="/printer_friendly/23601598" target="_blank"><img alt="print" class="dont_touch_me" src="http://assets.radiatemedia.com/images/print_icon.gif" title="print" /></a></span><span id="email_content_message_23601598" class="signature_email_message"></span></div>
+
+    <br>
+		</div>
+
+		<div class="story_item_content">
+	
+	<div class="story_item_images">
+    	
+
+	</div>
+	NOTICE OF FORECLOSURE OF RIGHT TO REDEEM [REF. O.C.G.A., Section 48-4-5 et seq.; 48-4-45 & 48-4-46] TO: RAFAEL PUENTE BANK OF AMERICA, NATIONAL ASSOCIATION OCCUPANT OF 8143 HUNTINGTON DRIVE AND ALL PERSONS KNOWN AND UNKNOWN HAVING OF RECORD IN CLAYTON COUNTY ANY RIGHT, TITLE INTEREST IN, OR LIEN UPON 8143 HUNTINGTON DRIVE RE: FORECLOSURE OF EQUITY OF REDEMPTION FOR TAX SALE DEED (REF. O.C.G.A.   48-4-45, 46) Take notice that: The right to redeem the following described property, to wit will expire and be forever foreclosed and barred as of five o'clock (5 p.m.) on and after November 4, 2013 or 45 days after legal service of the Notice pursuant to OCGA 48-4-45 et seq., whichever date is later: All that tract or parcel of land lying and being in Land Lots 237 and 238 of the 13th District, Clayton County, Georgia, being Lot 14, Block F, of Marlborough Subdivision, Unit Two, as per plat recorded in Plat Book 11, Page 147, Clayton County Records, which plat is incorporated herein and made a part of this description. That property known as 8143 Huntington Drive, according to the present system of numbering homes and having tax parcel identification number 13237B A020. The tax deed to which this notice relates is dated September 4, 2012 and recorded in the Office of the Clerk of the Superior Court of Clayton County, Georgia in Deed Book 10185 Page 466. The property may be redeemed on or before the time and date stated above by payment of the redemption price as fixed and provided by law to the undersigned at the following address: The American Home Real Estate Partnership III, LP c/o Carolina D. Bryant, Esq. Ayoub & Mansour, LLC 675 Seminole Avenue, Suite 301 Atlanta, Georgia 30307 404.892.2599 Please be governed accordingly. Sept-13,20,27/Oct-4-2013---303166			
+</div>
+		
+		
+	</div>
+</div>
+
+    </div>
+      
+
+  </div>
+</div>
+	</div>
+</div>
+
+		<div id="pt1_footer">
+			<div id="content_container" align="left">	<div>
+	<div id="pt1_footer">
+            <div id="site_footer_container" align="left"> <div align="center">
+
+    <span class="footnote">software copyright &copy; 2012 Radiate Media
+content copyright &copy; 2012 GPA public notice site<br>The public notice database on this site is not a substitute for the official publication that is required by law. The legal notices posted on this site are for reference only. Only the legal notices published in the official legal organ newspaper of the county are official per O.C.G.A. § 9-13-140. et seq.</span>
+
+    <br />
+	<a href="#1" onclick="newWindow = window.open('/help/privacy_policy', 'help', 'width=650,height=700,menubar=1,scrollbars=1,toolbar=0,resizable=1');
+newWindow.focus;; return false;"><span class="link">read our privacy policy</span></a>
+    <br />
+    <span class="footnote">GPA public notice site is in Atlanta, GA </span> </div> <p /></div>
+        </div>
+
+</div>
+</div>
+		</div>
+	</div>
+	</center>
+</div>
+<script type="text/javascript">
+    if (typeof(_gat) == 'undefined') {
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8641011-47']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script><script type="text/javascript">
+try {
+      var matchbinPageTracker = _gat._getTracker("UA-2581399-1");
+
+      matchbinPageTracker._trackPageview();
+} catch(e) {
+}
+
+try {
+
+matchbinReloadAds = function() {
+      var allFrames = $$('iframe');
+      for (var i = 0; i < allFrames.length; i++) {
+        try {
+          var frame = allFrames[i];
+          //change the src of the iframe to reload ad 
+          var src = frame.src;
+          var new_src = src.replace(/&random_for_refresh.*$/, '') + "&random_for_refresh=" + Math.random();
+
+          if (!src.match(/ads.radiatemedia.com/)) {
+            next;
+          }
+
+          if (Prototype.Browser.IE) {
+            //replace the iframe to avoid browser history problems
+            var new_iframe = frame.cloneNode(true);
+            //new_iframe.id = '';
+            var new_src = src.replace(/&random_for_refresh.*$/, '') + "&random_for_refresh=" + Math.random();
+            new_iframe.src = new_src;
+            //prevent flicker when ads are refreshed
+            if (parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE")+5)) >= 8) {
+              $(new_iframe).observe('load', (function(event) {
+                new_iframe.style.visibility = '';
+                new_iframe.style.position = '';
+                new_iframe.stopObserving();
+                if (frame.parentNode) {
+                  frame.parentNode.replaceChild(new_iframe, frame);
+                }
+                new_iframe.id = frame.id;
+              }).bind(this));
+              new_iframe.style.visibility = 'hidden';
+              new_iframe.style.position = 'absolute';
+              frame.parentNode.appendChild(new_iframe);
+            } else {
+              frame.parentNode.replaceChild(new_iframe, frame);
+              frame.parentNode.removeChild(frame);
+            }
+          } else {
+            frame.src = new_src;
+          }
+        } catch (e) {
+        }
+      }
+}
+
+matchbinAjaxHook = (function(url) {
+      try {
+        if (url && url.match && url.match(/pages|default|comment/) && !url.match(/account|noreload|ad_frame/)) {
+          matchbinPageTracker._trackPageview(url);
+          if (window.pageTracker) {
+            window.pageTracker._trackPageview(url);
+          }
+          if (typeof(window.ajaxAnalyticsHook) == 'function') {
+            window.ajaxAnalyticsHook(url);
+          }
+          matchbinReloadAds();
+        }
+      } catch (e) {
+      }
+}).bind(this);
+} catch(e) {
+}
+</script>
+<script type="text/javascript">
+var showTynt = (("ht" + "tp:") == document.location.protocol);
+if (showTynt) {
+      var tyntVariables = {"ap":"#{Read more: }"};
+      document.write(unescape("%3Cscript src='ht" + "tp://tcr.tynt.com/javascripts/Tracer.js?user=d56qUQzfGr34Onadbi-bpO&amp;su=0&amp;st=1' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+<script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";
+e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" +
+  "js-agent.newrelic.com/nr-100.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","beacon-6.newrelic.com","0a3acb3eea","14576","cg0IQEpbX1VUFBtbXlwPE1pRQEoWQQdTXUIeCwhQXUw=",0,36,new Date().getTime(),"","","","",""]);</script></body>
+</html>

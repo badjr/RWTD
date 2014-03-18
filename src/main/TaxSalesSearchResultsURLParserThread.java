@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.joda.time.DateTime;
 
 /**
  *
@@ -27,19 +26,21 @@ import org.joda.time.DateTime;
 //TODO: Write all source URLs to files
 //TODO: Write ads to files
 public class TaxSalesSearchResultsURLParserThread extends Thread {
-
-    private int myID; //Corresponds to the search results page a thread will process.
+    
     private String[] storyURLsArray; //This array holds the story URLs found on the search results page.
     private String csvString = "";
-//    private static String fileName; //File name of .csv to write to. Static so each thread will write to the same file.
     private int numAdsParsed = 0;
+    
+    private int myID; //Corresponds to the search results page a thread will process.
     private int searchResultsAdsPerPage;
     private String countyToSearch;
+    private String period;
 
-    public TaxSalesSearchResultsURLParserThread(int myID, int searhResultsAdsPerPage, String countyToSearch) {
+    public TaxSalesSearchResultsURLParserThread(int myID, int searhResultsAdsPerPage, String countyToSearch, String period) {
         this.myID = myID;
         this.searchResultsAdsPerPage = searhResultsAdsPerPage;
         this.countyToSearch = countyToSearch;
+        this.period = period;
     }
 
     public void grabSearchResultsURLs() {
@@ -199,25 +200,21 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
      * the result number on a page.
      */
     private void writeStoryURLSourceToFile(String URLSource, int i) {
-        //FIXME: This method is potentially slow.
+        //FIXME: This method is potentially slow. Add a timer.
         //Build times:
         //6 min 20 sec
         //54 sec
         //13 minutes 34 seconds
         //3 minutes 6 seconds
         //28 minutes 12 seconds
-        
-        //DateTime object from joda-time library.
-        //We'll use this to get the month, day of month, and year to use in
-        //the directory we will write.
-        DateTime dt = new DateTime();
+        //BUILD SUCCESSFUL (total time: 1 minute 30 seconds)
         
         try {
-            File f = new File("AdsTaxSaleGA" + "\\AdsTaxSaleSourceGA\\"
-                    + countyToSearch + "GA"
-                    + "\\" + dt.getMonthOfYear() + "-" + dt.getDayOfMonth()
-                    + "-" + (dt.getYear() % 100)
-                    + "\\pg" + myID + "result" + i + ".txt");
+            String pathStoryURLSource = "AdsTaxSaleGA" + "\\AdsTaxSaleSourceGA\\"
+                    + countyToSearch + "GA" + "\\" + period
+                    + "\\";
+            String fileName = "pg" + myID + "result" + i + ".txt";
+            File f = new File(pathStoryURLSource + fileName);
             
             //Make the directory if it doesn't exist yet.
             f.mkdirs();
@@ -248,9 +245,9 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
      * file.
      */
     public void writeStoryURLsToFile() {
+        String pathStoryURLs = "AdsTaxSaleGA\\URLsAdsTaxSaleGA\\";
         String fileName = "URLsAdsTaxSale" + countyToSearch + ".txt";
-        String path = "AdsTaxSaleGA\\URLsAdsTaxSaleGA\\";
-        File f = new File(path + fileName);
+        File f = new File(pathStoryURLs + fileName);
         
         if (myID == 1) { //Use only thread 1 for checking if the file exists.
             if (f.exists()) { //Delete and create a new blank file if it existed.
@@ -267,9 +264,9 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         //Writing the story URLs from storyURLsArray to file.
         FileWriter fw = null;
         try {
-            fw = new FileWriter(path + fileName, true);
+            fw = new FileWriter(pathStoryURLs + fileName, true);
             for (int i = 0; i < storyURLsArray.length; i++) {
-                fw.write("http://georgiapublicnotice.com/pages" + storyURLsArray[i] + System.lineSeparator());
+                fw.write("http://georgiapublicnotice.com" + storyURLsArray[i] + System.lineSeparator());
             }
         }
         catch (IOException ex) {
@@ -290,18 +287,16 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         //TODO: Decide on the file name to write to, and if we keep multiple
         //files if file already exists.
 
-        DateTime dt = new DateTime(); //For putting the month, year, and date in file name.
-        String fileName = "AdsTaxSaleGA\\AdsTaxSaleGA"
+        String pathTaxSaleAds = "AdsTaxSaleGA"
                 + "\\AdsTaxSaleGA"
                 + "\\" + countyToSearch + "GA"
-                + "\\govTaxSaleAds" 
-                + dt.getMonthOfYear() + "-" + dt.getDayOfMonth()
-                + "-" + (dt.getYear() % 100) + ".csv";
+                + "\\";
+        String fileName = "govTaxSaleAds" + period + ".csv";
         
         File f;
 
         if (myID == 1) { //Use thread 1 to create the file.
-            f = new File(fileName);
+            f = new File(pathTaxSaleAds + fileName);
             
             //If the file exists already, delete it and create a new blank file.
             if (f.exists()) {
@@ -313,11 +308,10 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
                     Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
         }
 
         try (FileWriter fw = new FileWriter(fileName, true)) {
-//            synchronized (this) {
+
             if (myID == 1) {
                 //Writing the field names on the first row of the .csv
                 //Use only thread with ID 1 so every thread doesn't write
@@ -337,10 +331,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
 
             System.out.println("myID = " + myID + ". Writing " + numAdsParsed + " ads to " + fileName);
             fw.write(csvString);
-
-//                System.out.println("govTaxSaleAdsPage.csv created. " + numAdsParsed + " ads stored.");
-//            }
-//            System.out.println("govTaxSaleAdsPage" + myID + ".csv created. " + numAdsParsed + " ads stored.");
+            
         }
         catch (IOException ex) {
             //TODO: Pause if don't have permission to write to file.
