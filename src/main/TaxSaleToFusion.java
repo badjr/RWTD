@@ -26,7 +26,8 @@ public class TaxSaleToFusion {
      */
     public static void taxSaleToFusion() {
         //TODO: How to determine file name?
-        String taxSaleFileName = "AdsTaxSaleProdFultonApr14GA2.csv";
+        String taxSaleFileName = "C:\\Dropbox\\AdsTaxSaleProdFultonApr14GA2.csv";
+        
         File f = new File(taxSaleFileName);
         try {
             Scanner fileScanner = new Scanner(f);
@@ -100,15 +101,15 @@ public class TaxSaleToFusion {
                 String colDataOldFile[] = currLine.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); //This regex splits by commas, skipping over quotes
 
                 //Do geocode at this step to get the lat long coordinates.
-                Geocoder geocoder = new Geocoder();
-                try {
-//                    System.out.println("address = " + colDataOldFile[addressColumnIndex] + " " + colDataOldFile[zipColumnIndex]);
-                    geocoder.performGeocode(colDataOldFile[addressColumnIndex] + " " + colDataOldFile[zipColumnIndex]);
-                    Thread.sleep(350); //Add a delay because Google limits how fast we can make geocoding requests.
-                }
-                catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException | InterruptedException ex) {
-                    Logger.getLogger(TaxSaleToFusion.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                Geocoder geocoder = new Geocoder();
+//                try {
+////                    System.out.println("address = " + colDataOldFile[addressColumnIndex] + " " + colDataOldFile[zipColumnIndex]);
+//                    geocoder.performGeocode(colDataOldFile[addressColumnIndex] + " " + colDataOldFile[zipColumnIndex]);
+//                    Thread.sleep(350); //Add a delay because Google limits how fast we can make geocoding requests.
+//                }
+//                catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException | InterruptedException ex) {
+//                    Logger.getLogger(TaxSaleToFusion.class.getName()).log(Level.SEVERE, null, ex);
+//                }
                 
                 //For generating the file name
                 String fullAddress = colDataOldFile[addressColumnIndex];
@@ -133,12 +134,12 @@ public class TaxSaleToFusion {
                                 + firstThreeOfAddress.toUpperCase() 
                                 + currRow++ + ".jpg,";
                     }
-                    else if (colLabelsFusion[i].equals("Latitude")) {
-                        outString += geocoder.getLat() + ",";
-                    }
-                    else if (colLabelsFusion[i].equals("Longitude")) {
-                        outString += geocoder.getLng() + ",";
-                    }
+//                    else if (colLabelsFusion[i].equals("Latitude")) {
+////                        outString += geocoder.getLat() + ",";
+//                    }
+//                    else if (colLabelsFusion[i].equals("Longitude")) {
+////                        outString += geocoder.getLng() + ",";
+//                    }
                     else {
                         //We use oldFileColIndex to get the proper index from colDataOldFile
                         outString += colDataOldFile[oldFileColIndex[i]] + ((i <= colLabelsFusion.length - 2) ? "," : "");
