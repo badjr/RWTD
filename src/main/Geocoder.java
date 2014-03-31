@@ -124,7 +124,9 @@ public class Geocoder {
      * Read ad tax sales file and create a new file with lat long coordinates.
      */
     public void fillLatLongCoords() {
-        File f = new File("AdsTaxSaleProdFultonSep13GATest.csv");
+        System.out.println("Enter the file name that you want to fill in the lat and long coordinates for: ");
+        String fileNameToFillLatLongCoords = RWTD.userScan.next();
+        File f = new File(fileNameToFillLatLongCoords);
         String colLabels[]; //Holds only the column names at the top of the .csv
         String cols[]; //Holds the actual data separated by commas of the .csv
         String outString = ""; //outString will be written to the new file with the lat long coordinates included.
@@ -177,9 +179,9 @@ public class Geocoder {
 
                 cols = s.nextLine().split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); //This regex splits by commas, skipping over quotes
                 
-                //Perform geocode with the address and zip, which is apparantly all that's needed.
+                //Perform geocode with the street address and zip, which is apparantly all that's needed.
                 this.performGeocode(cols[addressColumnIndex] + " " + cols[zipColumnIndex]);
-                Thread.sleep(500); //Add a delay because Google limits how fast we can make queries.
+                Thread.sleep(500); //Add a delay because Google limits how fast we can make geocoding requests.
                 
                 //Filling the columns of each row with all the old data,
                 //but including the lat long coordinates as well.
@@ -203,14 +205,15 @@ public class Geocoder {
                 outString += System.lineSeparator();
             }
 
-            //TODO: File name is hardcoded, but needs to be variable later.
-            FileWriter fw = new FileWriter(new File("AdsTaxSaleProdFultonSep13GATestWithCoords.csv"));
+            //Cut off the .csv and concantenate WithCoords.csv.
+            String outputFileName = fileNameToFillLatLongCoords.substring(0, fileNameToFillLatLongCoords.length() - 4) + "WithCoords.csv";
+            FileWriter fw = new FileWriter(new File(outputFileName));
             //The outString contains the new .csv contents with the coordinates included.
             fw.write(outString);
 
             fw.close();
             
-            System.out.println("Wrote lat long coordinates to AdsTaxSaleProdFultonSep13GATestWithCoords.csv");
+            System.out.println("Wrote lat long coordinates to " + outputFileName);
             
         }
         catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException | InterruptedException ex) {

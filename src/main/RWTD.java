@@ -4,6 +4,7 @@
  */
 package main;
 
+import com.dropbox.core.DbxException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -21,9 +22,6 @@ import org.xml.sax.SAXException;
  */
 public class RWTD {
 
-    /**
-     * @param args the command line arguments
-     */
     public static Scanner userScan;
 
     public static void main(String[] args) {
@@ -36,7 +34,6 @@ public class RWTD {
 //        System.out.println("Total execution time: " + (endTime - startTime) );
 //        
 //        startTime = System.currentTimeMillis();
-
         Geocoder gs = new Geocoder();
 
         while (true) {
@@ -45,6 +42,7 @@ public class RWTD {
             System.out.println("2. Fill Lat Long Coords");
             System.out.println("3. Geocode an address");
             System.out.println("4. Tax sale to Fusion");
+            System.out.println("5. Dropbox");
             System.out.println("q to quit");
 
             userScan = new Scanner(System.in);
@@ -98,88 +96,76 @@ public class RWTD {
     }
 
     static void grabTaxSaleAds() {
-        Scanner s = new Scanner(System.in);
+//        Scanner s = new Scanner(System.in);
         System.out.print("Enter number of pages: ");
-        int numPages = s.nextInt(); //10
+        int numPages = userScan.nextInt(); //10
 
         System.out.print("Enter number of results per page (max 50): ");
-        int resultsPerPage = s.nextInt(); //50
+        int resultsPerPage = userScan.nextInt(); //50
 
-        //Read the router file to find the last county searched and period.
-        File f = new File("AdsRouterAndKeys\\AdTaxSales\\TSProdRouter.txt");
-        String countyToSearch;
-        String period;
-        String routerCountyAndPeriod[];
-        Scanner s2;
-        try {
-            s2 = new Scanner(f);
-            //Router file contains the county and period separated by a comma.
-            routerCountyAndPeriod = s2.nextLine().split(",");
-            countyToSearch = routerCountyAndPeriod[0];
-            period = routerCountyAndPeriod[1];
-            s2.close();
+        String countyToSearch = "";
+        String period = "";
 
-            //When we get the county and period from the router file,
-            //ask the user if they want to keep these the same.
-            System.out.println("Do you want to search in " + countyToSearch + " county? (y/n)");
-            String response = s.next();
+        //Creates new CountyPeriodRouter. On initialization, it reads the
+        //county and period stored in AdsRouterAndKeys\\AdTaxSales\\TSProdRouter.txt.
+        CountyPeriodRouter countyPeriodRouter = new CountyPeriodRouter();
 
-            while (!(response.equalsIgnoreCase("y") || response.equalsIgnoreCase("n"))) {
-                System.out.println("Please enter y or n.");
-                response = s.next();
-            }
+        //When we get the county and period from the router file,
+        //ask the user if they want to keep these the same.
+        
+        System.out.println("Do you want to search in " + countyPeriodRouter.getCounty() + " county? (y/n)");
+        String response = userScan.next();
 
-            if (response.equalsIgnoreCase("n")) {
-                System.out.print("Enter county to search: ");
-                countyToSearch = s.next();
-            }
-
-            System.out.println("Is " + period + " the correct period? (y/n)");
-            response = s.next();
-
-            while (!(response.equalsIgnoreCase("y") || response.equalsIgnoreCase("n"))) {
-                System.out.println("Please enter y or n.");
-                response = s.next();
-            }
-
-            if (response.equalsIgnoreCase("n")) {
-                System.out.print("Enter the period: ");
-                countyToSearch = s.next(); //fulton
-            }
-
-            //If either the county or period were different, we write the new
-            //values to the router file.
-            if (!routerCountyAndPeriod[0].equalsIgnoreCase(countyToSearch)
-                    || !routerCountyAndPeriod[1].equalsIgnoreCase(period)) {
-                FileWriter fw = new FileWriter(f);
-                fw.write(countyToSearch + "," + period);
-                fw.close();
-            }
-
-            //Create numPages threads, each thread will process a page.
-            TaxSalesSearchResultsURLParserThread[] searchResultParser2 = new TaxSalesSearchResultsURLParserThread[numPages];
-            for (int i = 0; i < 10; i++) {
-                searchResultParser2[i] = new TaxSalesSearchResultsURLParserThread(i + 1, resultsPerPage, countyToSearch, period);
-                searchResultParser2[i].start();
-            }
-
-            for (TaxSalesSearchResultsURLParserThread thread : searchResultParser2) {
-                try {
-                    //This causes threads to execute in order by ID.
-                    //Also causes the parent thread to wait for all children threads
-                    //to finish their execution.
-                    thread.join();
-                }
-                catch (InterruptedException ex) {
-                    Logger.getLogger(RWTD.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("Thread was interrupted!");
-                }
-                thread.writeStoryURLsToFile();
-                thread.writeTaxSaleAdsToFile();
-            }
+        while (!(response.equalsIgnoreCase("y") || response.equalsIgnoreCase("n"))) {
+            System.out.println("Please enter y or n.");
+            response = userScan.next();
         }
-        catch (IOException ex) {
-            Logger.getLogger(RWTD.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (response.equalsIgnoreCase("n")) {
+            System.out.print("Enter county to search: ");
+            countyToSearch = userScan.next();
+        }
+
+        System.out.println("Is " + countyPeriodRouter.getPeriod() + " the correct period? (y/n)");
+        response = userScan.next();
+
+        while (!(response.equalsIgnoreCase("y") || response.equalsIgnoreCase("n"))) {
+            System.out.println("Please enter y or n.");
+            response = userScan.next();
+        }
+
+        if (response.equalsIgnoreCase("n")) {
+            System.out.print("Enter the period: ");
+            period = userScan.next(); //fulton
+        }
+
+        //If either the county or period were different, we update the new
+        //values to the router file.
+        if (!countyPeriodRouter.getCounty().equalsIgnoreCase(countyToSearch)
+                || !countyPeriodRouter.getPeriod().equalsIgnoreCase(period)) {
+            countyPeriodRouter.updatePeriod(countyToSearch, period);
+        }
+
+        //Create numPages threads, each thread will process a page.
+        TaxSalesSearchResultsURLParserThread[] searchResultParser2 = new TaxSalesSearchResultsURLParserThread[numPages];
+        for (int i = 0; i < 10; i++) {
+            searchResultParser2[i] = new TaxSalesSearchResultsURLParserThread(i + 1, resultsPerPage, countyToSearch, period);
+            searchResultParser2[i].start();
+        }
+
+        for (TaxSalesSearchResultsURLParserThread thread : searchResultParser2) {
+            try {
+                    //This causes threads to execute in order by ID.
+                //Also causes the parent thread to wait for all children threads
+                //to finish their execution.
+                thread.join();
+            }
+            catch (InterruptedException ex) {
+                Logger.getLogger(RWTD.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Thread was interrupted!");
+            }
+            thread.writeStoryURLsToFile();
+            thread.writeTaxSaleAdsToFile();
         }
 
     }
