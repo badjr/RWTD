@@ -148,7 +148,7 @@ public class RWTD {
 
         //Create numPages threads, each thread will process a page.
         TaxSalesSearchResultsURLParserThread[] searchResultParser2 = new TaxSalesSearchResultsURLParserThread[numPages];
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < numPages; i++) {
             searchResultParser2[i] = new TaxSalesSearchResultsURLParserThread(i + 1, resultsPerPage, countyToSearch, period);
             searchResultParser2[i].start();
         }
