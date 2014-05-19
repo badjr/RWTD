@@ -35,7 +35,7 @@ public class CountyPeriodRouter {
     public CountyPeriodRouter() {
         try {
             //Read the router file to find the last county searched and period.
-            f = new File("AdsRouterAndKeys\\AdTaxSales\\TSProdRouter.txt");
+            f = new File("AdsRouterAndKeys/AdTaxSales/TSProdRouter.txt");
             String routerCountyAndPeriod[]; //Stores the county and period
             Scanner s2 = new Scanner(f);
             
