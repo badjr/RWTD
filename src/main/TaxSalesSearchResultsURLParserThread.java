@@ -210,9 +210,9 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         //BUILD SUCCESSFUL (total time: 1 minute 30 seconds)
         
         try {
-            String pathStoryURLSource = "AdsTaxSaleGA" + "\\AdsTaxSaleSourceGA\\"
-                    + countyToSearch + "GA" + "\\" + period
-                    + "\\";
+            String pathStoryURLSource = "AdsTaxSaleGA" + "/AdsTaxSaleSourceGA/"
+                    + countyToSearch + "GA" + "/" + period
+                    + "/";
             String fileName = "pg" + myID + "result" + i + ".txt";
             File f = new File(pathStoryURLSource + fileName);
             
@@ -220,14 +220,16 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
             f.mkdirs();
             
             //If the file already exists, delete then recreate a blank file.
-            if (f.exists()) {
-                f.delete();
-                try {
-                    f.createNewFile();
-                }
-                catch (IOException ex) {
-                    Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            if (myID == 1) { //Use thread 1 only to handle this.
+            	if (f.exists()) {
+            		f.delete();
+            		try {
+            			f.createNewFile();
+            		}
+            		catch (IOException ex) {
+            			Logger.getLogger(TaxSalesSearchResultsURLParserThread.class.getName()).log(Level.SEVERE, null, ex);
+            		}
+            	}
             }
             
             //Write the URL source to the file.
@@ -245,7 +247,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
      * file.
      */
     public void writeStoryURLsToFile() {
-        String pathStoryURLs = "AdsTaxSaleGA\\URLsAdsTaxSaleGA\\";
+        String pathStoryURLs = "AdsTaxSaleGA/URLsAdsTaxSaleGA/";
         String fileName = "URLsAdsTaxSale" + countyToSearch + ".txt";
         File f = new File(pathStoryURLs + fileName);
         
@@ -288,15 +290,17 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
         //files if file already exists.
 
         String pathTaxSaleAds = "AdsTaxSaleGA"
-                + "\\AdsTaxSaleGA"
-                + "\\" + countyToSearch + "GA"
-                + "\\";
+                + "/AdsTaxSaleGA"
+                + "/" + countyToSearch + "GA"
+                + "/";
         String fileName = "govTaxSaleAds" + period + ".csv";
+        
+        String fullPath = pathTaxSaleAds + fileName;
         
         File f;
 
         if (myID == 1) { //Use thread 1 to create the file.
-            f = new File(pathTaxSaleAds + fileName);
+            f = new File(fullPath);
             
             //If the file exists already, delete it and create a new blank file.
             if (f.exists()) {
@@ -310,7 +314,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
             }
         }
 
-        try (FileWriter fw = new FileWriter(fileName, true)) {
+        try (FileWriter fw = new FileWriter(fullPath, true)) {
 
             if (myID == 1) {
                 //Writing the field names on the first row of the .csv
@@ -329,7 +333,7 @@ public class TaxSalesSearchResultsURLParserThread extends Thread {
                 fw.write(fields);
             }
 
-            System.out.println("myID = " + myID + ". Writing " + numAdsParsed + " ads to " + fileName);
+            System.out.println("myID = " + myID + ". Writing " + numAdsParsed + " ads to " + fullPath);
             fw.write(csvString);
             
         }

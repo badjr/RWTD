@@ -29,7 +29,7 @@ public class CountyPeriodRouter {
     
     /**
      * On initialization, we read the router file stored in
-     * AdsRouterAndKeys\\AdTaxSales\\TSProdRouter.txt and initialize the
+     * AdsRouterAndKeys/AdTaxSales/TSProdRouter.txt and initialize the
      * county and period fields.
      */
     public CountyPeriodRouter() {

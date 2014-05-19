@@ -26,7 +26,7 @@ public class TaxSaleToFusion {
      */
     public static void taxSaleToFusion() {
         //TODO: How to determine file name?
-        String taxSaleFileName = "C:\\Dropbox\\AdsTaxSaleProdFultonApr14GA2.csv";
+        String taxSaleFileName = "C:/Dropbox/AdsTaxSaleProdFultonApr14GA2.csv";
         
         File f = new File(taxSaleFileName);
         try {
@@ -113,7 +113,7 @@ public class TaxSaleToFusion {
                 
                 //For generating the file name
                 String fullAddress = colDataOldFile[addressColumnIndex];
-                String addressSplit[] = fullAddress.split("\\s+");
+                String addressSplit[] = fullAddress.split("\\s+"); //"\\s+" matches 1 or more whitespaces.
                 String firstThreeOfAddress = addressSplit[1].substring(0, 3);
                                 
                 //For putting the data on the row column by column

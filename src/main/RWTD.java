@@ -107,7 +107,7 @@ public class RWTD {
         String period = "";
 
         //Creates new CountyPeriodRouter. On initialization, it reads the
-        //county and period stored in AdsRouterAndKeys\\AdTaxSales\\TSProdRouter.txt.
+        //county and period stored in AdsRouterAndKeys/AdTaxSales/TSProdRouter.txt.
         CountyPeriodRouter countyPeriodRouter = new CountyPeriodRouter();
 
         //When we get the county and period from the router file,
@@ -120,7 +120,10 @@ public class RWTD {
             System.out.println("Please enter y or n.");
             response = userScan.next();
         }
-
+        
+        //Do this so it updates the router file in case they said yes.
+        countyToSearch = countyPeriodRouter.getCounty();
+        
         if (response.equalsIgnoreCase("n")) {
             System.out.print("Enter county to search: ");
             countyToSearch = userScan.next();
@@ -133,7 +136,10 @@ public class RWTD {
             System.out.println("Please enter y or n.");
             response = userScan.next();
         }
-
+        
+        //Do this so it updates the router file in case they said yes.
+        period = countyPeriodRouter.getPeriod();
+        
         if (response.equalsIgnoreCase("n")) {
             System.out.print("Enter the period: ");
             period = userScan.next(); //fulton
@@ -155,7 +161,7 @@ public class RWTD {
 
         for (TaxSalesSearchResultsURLParserThread thread : searchResultParser2) {
             try {
-                    //This causes threads to execute in order by ID.
+                //This causes threads to execute in order by ID.
                 //Also causes the parent thread to wait for all children threads
                 //to finish their execution.
                 thread.join();
